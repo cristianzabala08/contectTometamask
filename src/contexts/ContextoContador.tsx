@@ -1,21 +1,21 @@
-import { createContext } from "solid-js";
+import {  createContext } from "solid-js";
 import { createStore } from "solid-js/store";
 
-export const ContextoContador = createContext([{ cuenta: 0 }, {}]);
+export const ContextoContador = createContext<any>([{ cuenta: 0 ,}, {}]);
 
-export function ProveedorContador(props:any) {
-	const [estado, setEstado] = createStore({ cuenta: props.count || 0 });
+export const ProveedorContador =(props:any)=> {
+	const [states, setState] = createStore({ cuenta: props.count || 0 });
 	const store = [
-		estado,
+		states,
 		{
 			incrementar() {
-				setEstado("cuenta", (c) => c + 1);
+				setState("cuenta", (c:number) => c + 1);
 			},
 			disminuir() {
-				setEstado("cuenta", (c) => c - 1);
+				setState("cuenta", (c:number) => c - 1);
 			},
 		},
 	];
-
+	
 	return <ContextoContador.Provider value={store}>{props.children}</ContextoContador.Provider>;
 }

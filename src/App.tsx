@@ -23,7 +23,8 @@ const App = () => {
   const [miString, setMiString] = createSignal("string", {
     equals: (newVal, oldVal) => newVal.length === oldVal.length,
   });
-  const [estados, setEstado] = createStore({ name: '' });
+  const [states, {incrementar,disminuir}] = useContext(ContextoContador);
+
   const [data, setdata] = createSignal({
     address: "",
     Balance: null,
@@ -41,8 +42,7 @@ const App = () => {
     setApellido("zabala");
     setValor({ equals: true, other: true });
     setMiString("stranger");
-    setEstado({ name: "esteValor" })
-    create();  
+    create();
   });
 
   function Somos() {
@@ -58,19 +58,23 @@ const App = () => {
   }
 
   function accountChangeHandler(account: string) {
-    setdata({...data(),address: account});
-    console.log(data());
-    
+    setdata({ ...data(), address: account });
+    console.log(window.ethereum.networkVersion);
   }
 
 
-   function onClick(): void {
+  async function onClick(): Promise<void> {
 
     if (window.ethereum) {
 
-      window.ethereum
-      .request({ method: "eth_requestAccounts" })
-      .then((res:any) => accountChangeHandler(res[0]));
+      try {
+        let data: any = await window.ethereum
+          .request({ method: "eth_requestAccounts" });
+
+        accountChangeHandler(data[0])
+      } catch (error) {
+        console.log(error)
+      }
 
     } else {
       alert("install metamask extension!!")
@@ -78,13 +82,16 @@ const App = () => {
   }
 
   function create(): void {
-    console.log(estados);
-
+    incrementar();
   }
 
   return (
     <div class={styles.App}>
       <header class={styles.header}>
+      <button onclick={create}>
+        click
+      </button>
+      <p>{states.cuenta}</p>
         <img src={logo} class={styles.logo} alt="logo" />
         <Form onSubmit={() => console.log('asad')} />
         <button onclick={() => onClick()}>other</button>
