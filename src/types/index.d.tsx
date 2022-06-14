@@ -8,6 +8,11 @@ declare global {
 
 declare module 'solid-js' {
   namespace JSX {
+    
+    interface HTMLAttributes<T> {
+      'use:form'?: {};
+    }
+
     interface Directives {
       formGroup?: {};
     }
