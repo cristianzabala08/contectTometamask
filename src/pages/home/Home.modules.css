@@ -1,0 +1,13 @@
+.App {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    background-color: #282c34;
+    height: 100vh;
+  }
+  
+  @media (max-width: 500px) {
+    .App {
+      grid-template-columns: 110px 1fr;
+    }
+  }
+  

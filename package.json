@@ -27,6 +27,7 @@
     "install": "^0.13.0",
     "npm": "^8.12.1",
     "solid-app-router": "^0.3.3",
+    "solid-bootstrap": "^1.0.8",
     "solid-js": "^1.4.2",
     "solid-styled-components": "^0.28.1",
     "yup": "^0.32.11"

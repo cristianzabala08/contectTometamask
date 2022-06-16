@@ -5,13 +5,14 @@ import {
     retunLocarStoreString,
 } from "../../utils/LocalStore";
 import logo from "../../logo.svg";
-import { useNavigate, useSearchParams } from "solid-app-router";
+import {  useSearchParams } from "solid-app-router";
 import { getProfileSevices, insertServices } from "../../utils/Query";
+import { Button } from "solid-bootstrap";
 
 const Account = (props:{click?:()=>void}) => {
     const [searchParams] = useSearchParams();
     const i18n: any = useI18n();
-    const RefId = searchParams.ref
+    const RefId = searchParams.ref;
 
     createEffect(() => {
         checkProfile();
@@ -120,20 +121,20 @@ const Account = (props:{click?:()=>void}) => {
             }
         } else {
             alert("install metamask extension!!");
+            window.location.href  = "https://metamask.io/download/";
         }
     }
 
     return (
         <div class=" container-fluid align-content-center d-flex justify-content-center flex-column ">
-
+       
             <div class="align-content-center d-flex justify-content-center">
                 <img src={logo} class="logo" alt="logo" />
             </div>
             <div class="align-content-center d-flex justify-content-center">
-                <button class="btn btn-primary" onclick={() => onClick()}>
-                    {i18n.t("name")}
-                </button>
+                <Button  onclick={() => onClick()} variant="primary">{i18n.t("name")}</Button>
             </div>
+            
         </div>
     );
 };
