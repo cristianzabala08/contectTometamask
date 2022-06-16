@@ -1,11 +1,11 @@
+import { Component } from "solid-js";
 
-  const Home = () => {
-
-    return (
-        <div> 
-            other pages
-        </div>
-    );
-  };
+const Home: Component = () => {
   
-  export default Home;
+
+  return (
+      <div>other pages</div>
+  );
+};
+
+export default Home;

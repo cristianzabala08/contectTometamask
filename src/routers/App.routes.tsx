@@ -1,42 +1,55 @@
-import { Routes, Route, useRoutes } from "solid-app-router";
-import { Component, lazy } from "solid-js";
+import { Routes, Route, useRoutes, useNavigate } from "solid-app-router";
+import { Component, createSignal, lazy } from "solid-js";
 import { retunLocarStoreString } from "../utils/LocalStore";
 import { ProtectedRoute } from "./ProtectedRoute";
+import LangDrup from "../components/Lang/LangDrop";
+import Home from "../pages/home/Home";
+import Registration from "../components/form/form";
+import Login from "../pages/Login/Auth";
 
-const Registration: Component = lazy(() => import("../components/form/form"));
-
-const routes = [
-  {
-    path: "/",
-    component: lazy(() => import("../pages/Login/Auth")),
-  },
-  {
-    path: "/home",
-    element: routerChildren,
-  },
-];
-
-function routerChildren() {
-
-  let profileExists:boolean = retunLocarStoreString("profile") != ""; 
+function AppRouter(props: { clicks?: (e: string) => void }) {
+  const navigate = useNavigate();
+  let profileExists: boolean = retunLocarStoreString("profile") != "";
+  
+  function sendToHome() {
+    profileExists = retunLocarStoreString("profile") != "";
+    navigate("/home", { replace: true });
+  }
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute user={profileExists} path={"/"}>
-            <Registration />
-          </ProtectedRoute>
-        }
-      />
-    </Routes>
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div>
+              <LangDrup
+                click={(e) => {
+                  props.clicks?.(e);
+                }}
+              />
+              <Login click={() => sendToHome()} />
+            </div>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute path={"/"} user={profileExists}>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/registration"
+          element={
+            <ProtectedRoute path={"/"} user={profileExists}>
+              <Registration />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </>
   );
-}
-
-function AppRouter() {
-  const RouterUser = useRoutes(routes);
-
-  return <RouterUser />;
 }
 export default AppRouter;
