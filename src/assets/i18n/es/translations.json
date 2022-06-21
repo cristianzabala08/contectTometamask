@@ -1,5 +1,9 @@
 {
     "name":"nombre",
     "lastName":"apellido",
-    "email":"email"
+    "email":"email",
+    "home":"inicio",
+    "settings":"configuracion",
+    "profile":"perfil",
+    "singOut":"Salir"
 }

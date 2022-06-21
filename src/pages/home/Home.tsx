@@ -1,9 +1,9 @@
 import { Component, createSignal, Match, Switch } from "solid-js";
 import { HomeProvider } from "../../contexts/home/homeProvider";
-import NavHome from "../../components/home/NavHome";
-import "./Home.modules.css";
-import { Container, Navbar } from "solid-bootstrap";
-import { NavBarHome } from "../../components/home/NavBarHome";
+import NavHome from "../../components/dashboard/Navbar/NavHome";
+import { NavBarHome } from "../../components/dashboard/Nav/NavBarHome";
+import { Container } from "solid-bootstrap";
+import { HomePages } from "../../components/dashboard/home/Home";
 
 const Home: Component = () => {
   const [viewSelected, setViewSelected] = createSignal("all");
@@ -16,11 +16,10 @@ const Home: Component = () => {
 
   return (
     <HomeProvider todoItems={defaultTodos}>
-      <div class="App">
-        <NavHome setView={setViewSelected} view={viewSelected} />
-        <div>
-        <NavBarHome/>
-          <Switch fallback={<div>TODOS</div>}>
+      <NavHome setView={setViewSelected} view={viewSelected}>
+        <NavBarHome />
+        <Container class="mt-5 pt-3">
+          <Switch fallback={<HomePages />}>
             <Match when={viewSelected() === "to do"}>
               <div>somos</div>
             </Match>
@@ -28,8 +27,8 @@ const Home: Component = () => {
               <div>comple</div>
             </Match>
           </Switch>
-        </div>
-      </div>
+        </Container>
+      </NavHome>
     </HomeProvider>
   );
 };

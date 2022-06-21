@@ -1,5 +1,9 @@
 {
     "name":"nameqweqweqw",
     "lastName":"lastName",
-    "email":"email"
+    "email":"email",
+    "home":"home",
+    "settings":"settings",
+    "profile":"profile",
+    "singOut":"sing out"
 }
