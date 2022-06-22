@@ -89,7 +89,7 @@ const Account = (props:{click?:()=>void}) => {
 
     async function savesRefFromUser(wallet: string): Promise<void> {
         try {
-            const userRef = { userRefId: RefId, walletRefId: wallet };
+            const userRef = { userRefId: atob(RefId), walletRefId: wallet };
 
             let { error } = await insertServices("ref", userRef);
 
@@ -104,6 +104,28 @@ const Account = (props:{click?:()=>void}) => {
             alert(error.message);
         }
     }
+
+   /*   const getCurrentWalletConnected = async()=>{
+            try {
+                const addressArray = await window.ethereum.request({
+                    method: "eth_accounts",
+                })
+                console.log(addressArray);
+                if(addressArray.length > 0){
+                    return {
+                        address: addressArray[0],
+                        status:"Wallet Connected"
+                    }
+                }else{
+                    return {
+                        address: "",
+                        status:"Wallet Disconnected"
+                }
+            }
+            } catch (error) {
+                
+            }
+    } */
 
     async function onClick(): Promise<void> {
         if (window.ethereum) {

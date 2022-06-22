@@ -12,6 +12,17 @@ async function getProfile(walletId: string): Promise<PostgrestSingleResponse<any
     return data ;
 }
 
+async function getRef(walletId: string): Promise<PostgrestSingleResponse<any>> {
+    
+    let data = await supabase
+    .from("ref")
+    .select(`userRefId, walletRefId`)
+    .eq("walletRefId", walletId)
+    .single();
+
+    return data ;
+}
+
 async function insert(name:string, insertData:{}):Promise<PostgrestResponse<any>>  {
   
   let data =  await supabase.from(name).insert(insertData, {
@@ -21,4 +32,4 @@ async function insert(name:string, insertData:{}):Promise<PostgrestResponse<any>
     return data ;
 }
 
-export { getProfile as getProfileSevices, insert as insertServices };
+export { getProfile as getProfileSevices, insert as insertServices,getRef as getRefServices };

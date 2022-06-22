@@ -4,6 +4,7 @@ import NavHome from "../../components/dashboard/Navbar/NavHome";
 import { NavBarHome } from "../../components/dashboard/Nav/NavBarHome";
 import { Container } from "solid-bootstrap";
 import { HomePages } from "../../components/dashboard/home/Home";
+import { ProfileHome } from "../../components/dashboard/Profile/Profile";
 
 const Home: Component = () => {
   const [viewSelected, setViewSelected] = createSignal("all");
@@ -20,10 +21,10 @@ const Home: Component = () => {
         <NavBarHome />
         <Container class="mt-5 pt-3">
           <Switch fallback={<HomePages />}>
-            <Match when={viewSelected() === "to do"}>
-              <div>somos</div>
+            <Match when={viewSelected() === "profile"}>
+              <ProfileHome />
             </Match>
-            <Match when={viewSelected() === "completed"}>
+            <Match when={viewSelected() === "settings"}>
               <div>comple</div>
             </Match>
           </Switch>

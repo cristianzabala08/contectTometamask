@@ -12,9 +12,9 @@ const NavHome = (props: any) => {
   const [isOpen, setIsOpen] = createSignal(false);
 
   const menuOptions = [
-    { text: i18n.t("home"), value: "all", icon: "fa fa-home" },
-    { text: i18n.t("profile"), value: "to do", icon: "fa fa-user-o" },
-    { text: i18n.t("settings"), value: "completed", icon: "fa fa-cog" },
+    { text: i18n.t("home"), value: "home", icon: "fa fa-home" },
+    { text: i18n.t("profile"), value: "profile", icon: "fa fa-user-o" },
+    { text: i18n.t("settings"), value: "settings", icon: "fa fa-cog" },
     { text: i18n.t("singOut"), value: "salir", icon: "fa fa-sign-out" },
   ];
 
@@ -29,14 +29,13 @@ const NavHome = (props: any) => {
   function handleTrigger(): void {
     setIsOpen(!isOpen());
   }
-
+/* 
   function closend(): void {
     if (isOpen() === false) return;
     setIsOpen(false);
-  }
+  } */
 
   function handleClick(item: any, index: number) {
-    closend();
 
     if (item.value === "salir") {
       handleOpen();
