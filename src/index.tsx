@@ -9,6 +9,7 @@ import AppRouter from "./routers/App.routes";
 import { Router } from "solid-app-router";
 import { createI18n } from "./contexts/i18n/context";
 import { LocalStoreLangue } from "./utils/LocalStore";
+import { ProveedorContador } from "./contexts/ContextoContador";
 
 function InicialPages() {
   const [loaded, setLoaded] = createSignal(false);

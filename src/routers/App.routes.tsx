@@ -1,16 +1,17 @@
-import { Routes, Route, useRoutes, useNavigate } from "solid-app-router";
-import { Component, createSignal, lazy } from "solid-js";
+import { Routes, Route, useNavigate } from "solid-app-router";
 import { retunLocarStoreString } from "../utils/LocalStore";
 import { ProtectedRoute } from "./ProtectedRoute";
 import LangDrup from "../components/Lang/LangDrop";
 import Home from "../pages/home/Home";
 import Registration from "../components/form/form";
 import Login from "../pages/Login/Auth";
+import  { Toaster } from 'solid-toast';
 
 function AppRouter(props: { clicks?: (e: string) => void }) {
   const navigate = useNavigate();
   let profileExists: boolean = retunLocarStoreString("profile") != "";
-  
+
+
   function sendToHome() {
     profileExists = retunLocarStoreString("profile") != "";
     navigate("/home", { replace: true });
@@ -49,6 +50,7 @@ function AppRouter(props: { clicks?: (e: string) => void }) {
           }
         />
       </Routes>
+      <Toaster/>
     </>
   );
 }

@@ -30,6 +30,7 @@
     "solid-bootstrap": "^1.0.8",
     "solid-js": "^1.4.2",
     "solid-styled-components": "^0.28.1",
+    "solid-toast": "^0.1.5",
     "yup": "^0.32.11"
   }
 }

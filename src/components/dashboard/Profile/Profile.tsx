@@ -1,10 +1,12 @@
 import { Container } from "solid-bootstrap";
-import { Component, createEffect, createSignal } from "solid-js";
-import { retunLocarStoreString } from "../../../utils/LocalStore";
+import { Component, createEffect, createSignal, useContext } from "solid-js";
 import { getRefServices } from "../../../utils/Query";
+import { ToastServices } from "../../../utils/Toasts";
 import "./profile.css";
 
-const Profile: Component = () => {
+const Profile: Component<{ walletId: string }> = (props: {
+  walletId: string;
+}) => {
   const baseUrl = "http://localhost:3000/";
   const [refId, setRefId] = createSignal("");
 
@@ -14,17 +16,16 @@ const Profile: Component = () => {
 
   function copyToClipBoard() {
     navigator.clipboard.writeText(`${baseUrl}?ref=${refId()}`).then(() => {
-      console.log("Copied to clipboard");
+      ToastServices("Success", "Copied to clipboard",);
     });
   }
 
   const getProfile = async () => {
-    let profile: string = retunLocarStoreString("profile");
     try {
-      let { data, error } = await getRefServices(profile);
+      let { data, error } = await getRefServices(props.walletId);
       setRefId(btoa(data.userRefId));
     } catch (error: any) {
-      console.log(error.message);
+      ToastServices("Error", error.message);
     }
   };
 

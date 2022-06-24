@@ -6,10 +6,10 @@ import "./Nav.css";
 
 const NavHome = (props: any) => {
   const [item, setItem] = createSignal(0);
-  const i18n: any = useI18n();
-  const navigate = useNavigate();
   const [show, setShow] = createSignal(false);
   const [isOpen, setIsOpen] = createSignal(false);
+  const i18n: any = useI18n();
+  const navigate = useNavigate();
 
   const menuOptions = [
     { text: i18n.t("home"), value: "home", icon: "fa fa-home" },
@@ -29,14 +29,13 @@ const NavHome = (props: any) => {
   function handleTrigger(): void {
     setIsOpen(!isOpen());
   }
-/* 
+  /* 
   function closend(): void {
     if (isOpen() === false) return;
     setIsOpen(false);
   } */
 
   function handleClick(item: any, index: number) {
-
     if (item.value === "salir") {
       handleOpen();
       return;
@@ -52,7 +51,14 @@ const NavHome = (props: any) => {
 
   return (
     <>
-      <Modals show={show()} handleClose={handleClose} out={singOut} />
+      <Modals
+        title="sing out"
+        body="seguro que quieres cerrar seccion"
+        show={show()}
+        handleClose={handleClose}
+        out={singOut}
+        showOut={true}
+      />
       <div class="App">
         <div class="page">
           <div class="m-5">{props.children}</div>
