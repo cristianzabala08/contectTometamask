@@ -11,7 +11,7 @@
   "license": "MIT",
   "devDependencies": {
     "typescript": "^4.6.4",
-    "vite": "^2.9.9",
+    "vite": "^4.2.1",
     "vite-plugin-solid": "^2.2.6"
   },
   "dependencies": {
@@ -26,9 +26,10 @@
     "i18next-xhr-backend": "^3.2.2",
     "install": "^0.13.0",
     "npm": "^8.12.1",
-    "solid-app-router": "^0.3.3",
+    "solid-app-router": "^0.1.14",
     "solid-bootstrap": "^1.0.8",
     "solid-js": "^1.4.2",
+    "solid-start": "^0.2.26",
     "solid-styled-components": "^0.28.1",
     "solid-toast": "^0.1.5",
     "yup": "^0.32.11"

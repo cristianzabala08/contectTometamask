@@ -9,31 +9,12 @@ import  { Toaster } from 'solid-toast';
 
 function AppRouter(props: { clicks?: (e: string) => void }) {
   const navigate = useNavigate();
-  let profileExists: boolean = retunLocarStoreString("profile") != "";
 
-
-  function sendToHome() {
-    profileExists = retunLocarStoreString("profile") != "";
-    navigate("/home", { replace: true });
-  }
 
   return (
-    <>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              <LangDrup
-                click={(e) => {
-                  props.clicks?.(e);
-                }}
-              />
-              <Login click={() => sendToHome()} />
-            </div>
-          }
-        />
-        <Route
+      <Route path="/" element={<div>asdasdasd</div>} outlet={() => null} />
+{/*         <Route
           path="/home"
           element={
             <ProtectedRoute path={"/"} user={profileExists}>
@@ -48,10 +29,8 @@ function AppRouter(props: { clicks?: (e: string) => void }) {
               <Registration />
             </ProtectedRoute>
           }
-        />
+        /> */}
       </Routes>
-      <Toaster/>
-    </>
   );
 }
 export default AppRouter;
